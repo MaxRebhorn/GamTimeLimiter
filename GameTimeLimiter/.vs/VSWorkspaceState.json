@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GameTimeLimiter",
+    "\\GameTimeLimiter\\Properties"
   ],
-  "SelectedNode": "\\GameTimeLimiter.sln",
+  "SelectedNode": "\\GameTimeLimiter\\GameTimeLimiter.csproj",
   "PreviewInSolutionExplorer": false
 }

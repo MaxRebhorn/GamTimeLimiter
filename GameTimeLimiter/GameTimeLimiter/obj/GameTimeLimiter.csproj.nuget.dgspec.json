@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rebhorn\\source\\repos\\GameTimeLimiter\\GameTimeLimiter\\GameTimeLimiter.csproj": {}
+    "C:\\Users\\rebhorn\\Documents\\Projects\\GameTimeLimiterMain\\GameTimeLimiter\\GameTimeLimiter\\GameTimeLimiter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rebhorn\\source\\repos\\GameTimeLimiter\\GameTimeLimiter\\GameTimeLimiter.csproj": {
+    "C:\\Users\\rebhorn\\Documents\\Projects\\GameTimeLimiterMain\\GameTimeLimiter\\GameTimeLimiter\\GameTimeLimiter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rebhorn\\source\\repos\\GameTimeLimiter\\GameTimeLimiter\\GameTimeLimiter.csproj",
+        "projectUniqueName": "C:\\Users\\rebhorn\\Documents\\Projects\\GameTimeLimiterMain\\GameTimeLimiter\\GameTimeLimiter\\GameTimeLimiter.csproj",
         "projectName": "GameTimeLimiter",
-        "projectPath": "C:\\Users\\rebhorn\\source\\repos\\GameTimeLimiter\\GameTimeLimiter\\GameTimeLimiter.csproj",
+        "projectPath": "C:\\Users\\rebhorn\\Documents\\Projects\\GameTimeLimiterMain\\GameTimeLimiter\\GameTimeLimiter\\GameTimeLimiter.csproj",
         "packagesPath": "C:\\Users\\rebhorn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rebhorn\\source\\repos\\GameTimeLimiter\\GameTimeLimiter\\obj\\",
+        "outputPath": "C:\\Users\\rebhorn\\Documents\\Projects\\GameTimeLimiterMain\\GameTimeLimiter\\GameTimeLimiter\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rebhorn\\AppData\\Roaming\\NuGet\\NuGet.Config",

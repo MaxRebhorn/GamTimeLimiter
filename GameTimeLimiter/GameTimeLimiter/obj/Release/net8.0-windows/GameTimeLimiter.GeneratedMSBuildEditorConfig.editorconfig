@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GameTimeLimiter
-build_property.ProjectDir = C:\Users\rebhorn\source\repos\GameTimeLimiter\GameTimeLimiter\
+build_property.ProjectDir = C:\Users\rebhorn\Documents\Projects\GameTimeLimiterMain\GameTimeLimiter\GameTimeLimiter\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

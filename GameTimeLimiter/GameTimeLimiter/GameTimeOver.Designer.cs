@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            code_input = new MaskedTextBox();
+            code_input = new TextBox();
             label1 = new Label();
             submit_button = new Button();
             resend_email = new Button();
@@ -40,6 +40,7 @@
             code_input.Name = "code_input";
             code_input.Size = new Size(156, 23);
             code_input.TabIndex = 0;
+            code_input.PlaceholderText = "XXXXX";
             // 
             // label1
             // 
@@ -58,6 +59,7 @@
             submit_button.TabIndex = 2;
             submit_button.Text = "submit";
             submit_button.UseVisualStyleBackColor = true;
+            submit_button.Click += submit_button_Click;
             // 
             // resend_email
             // 
@@ -87,7 +89,7 @@
 
         #endregion
 
-        private MaskedTextBox code_input;
+        private TextBox code_input;
         private Label label1;
         private Button submit_button;
         private Button resend_email;
