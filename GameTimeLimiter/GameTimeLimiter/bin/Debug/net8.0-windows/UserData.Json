@@ -1,0 +1,10 @@
+﻿{
+  "Admin": {
+    "Password": "123",
+    "DailyTimeLimit": 0
+  },
+  "User": {
+    "Password": "124",
+    "DailyTimeLimit": 1
+  }
+}
