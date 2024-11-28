@@ -21,7 +21,7 @@ namespace GameTimeLimiter
         public string Code { get; set; }
         public DateTime? LastUpdated { get; set; }
         
-        public bool valid { get; set; }
+        public bool? valid { get; set; }
     }
 
     public class DailyCodes
@@ -57,7 +57,7 @@ namespace GameTimeLimiter
             addDailyCodes();
 
             string mail_string = build_mail_string();
-
+            
             send_mail("Spielzeit Vorbei", mail_string);
         }
 

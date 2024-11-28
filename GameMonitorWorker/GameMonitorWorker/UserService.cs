@@ -16,15 +16,18 @@ public class UserService
     public UserService(IConfiguration configuration)
     {
         _configuration = configuration;
+
         _userDataPath = _configuration.GetValue<string>("UserDataPath");
         _gameDataPath = _configuration.GetValue<string>("GameDataPath");
-        _gameTimeLimiterPath = configuration.GetValue<string>("GameTimeLimiterPath");
+        _gameTimeLimiterPath = _configuration.GetValue<string>("GameTimeLimiterPath");
     }
+
+
 
     public async Task<bool> CheckMaxPlayTime(string username)
     {
         var userDictionary = GetUserDictionary();
-    
+
         if (!userDictionary.TryGetValue(username, out var userDetails))
             throw new Exception("User not found.");
 
@@ -32,18 +35,22 @@ public class UserService
         var totalPlayTimeToday = GetTotalPlayTimeToday();
 
         int? dailyLimitInHours = userDetails.DailyTimeLimit;
+        double? dailyExtraInMinutes = userDetails.DailyTimeExtra;
 
-        if (dailyLimitInHours.HasValue)
+        // Initialize dailyLimitInMinutes with either DailyTimeLimit value or 0
+        int dailyLimitInMinutes = dailyLimitInHours.HasValue ? dailyLimitInHours.Value * 60 : 0;
+
+        // If DailyTimeExtra was updated today, add it to the daily limit
+        if (userDetails.LastModified.HasValue && userDetails.LastModified.Value.Date == DateTime.Today && dailyExtraInMinutes.HasValue)
         {
-            // Convert hours to minutes 
-            int dailyLimitInMinutes = dailyLimitInHours.Value * 60;
+            dailyLimitInMinutes += (int)dailyExtraInMinutes.Value;
+        }
 
-            if (totalPlayTimeToday > dailyLimitInMinutes)
-            {
-                Console.WriteLine("Starting Game Time Limiter.");
-                StartGameTimeLimiter();
-                return false;
-            }
+        if (totalPlayTimeToday > dailyLimitInMinutes)
+        {
+            Console.WriteLine("Starting Game Time Limiter.");
+            StartGameTimeLimiter();
+            return false;
         }
 
         return true;
@@ -77,4 +84,6 @@ public class UserDetail
 {
     public string Password { get; set; }
     public int? DailyTimeLimit { get; set; }
+    public double? DailyTimeExtra { get; set; } // let's have nullable double type for this one to handle minutes fractional part
+    public DateTime? LastModified { get; set; }
 }

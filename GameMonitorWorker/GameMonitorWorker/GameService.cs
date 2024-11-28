@@ -9,7 +9,7 @@ using System;
 
 public class GameService
 {
-    private readonly IConfiguration _configuration;
+    private IConfiguration _configuration;
     private string _gameDataPath;
     private List<GameDetail> gameList;
     private List<GamingSession> activeSessions;
@@ -18,7 +18,9 @@ public class GameService
     {
         Console.WriteLine("Starting GameService");
         _configuration = configuration;
+    
         _gameDataPath = _configuration.GetValue<string>("GameDataPath");
+    
         gameList = new List<GameDetail>();
         activeSessions = new List<GamingSession>();
     }

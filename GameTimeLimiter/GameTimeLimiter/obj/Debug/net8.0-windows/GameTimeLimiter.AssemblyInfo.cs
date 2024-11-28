@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GameTimeLimiter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0968571e1ef28f77c84d13161882154db19564cf")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameTimeLimiter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameTimeLimiter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
