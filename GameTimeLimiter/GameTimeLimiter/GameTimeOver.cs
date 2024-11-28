@@ -20,6 +20,8 @@ namespace GameTimeLimiter
     {
         public string Code { get; set; }
         public DateTime? LastUpdated { get; set; }
+        public DateTime? LastEmailSent { get; set; }
+
         
         public bool? valid { get; set; }
     }
@@ -29,6 +31,9 @@ namespace GameTimeLimiter
         public CodeDetails OneHourCode { get; set; }
         public CodeDetails TwoHourCode { get; set; }
         public CodeDetails RestOfTheDayCode { get; set; }
+        public DateTime? LastEmailSent { get; set; }
+
+
     }
 
     public class EmailData
@@ -42,24 +47,26 @@ namespace GameTimeLimiter
     }
 
     public partial class GameTimeOver : Form
+{
+    private EmailData emailData;
+    private DailyCodes dailyCodes;
+    private string OneHourCode;
+    private string TwoHourCode;
+    private string RestOfTheDayCode;
+
+    public GameTimeOver()
     {
-        private EmailData emailData;
-        private string OneHourCode;
-        private string TwoHourCode;
-        private string RestOfTheDayCode;
+        InitializeComponent();
+        LoadEmailData();
+        LoadDailyCodes();
+        addDailyCodes();
+        string mail_string = build_mail_string();
 
-        public GameTimeOver()
+        if (dailyCodes.LastEmailSent.HasValue && DateTime.Now.Subtract(dailyCodes.LastEmailSent.Value).TotalHours >= 1)
         {
-            InitializeComponent();
-
-            LoadEmailData();
-
-            addDailyCodes();
-
-            string mail_string = build_mail_string();
-            
             send_mail("Spielzeit Vorbei", mail_string);
         }
+    }
 
         private void LoadEmailData()
         {
@@ -75,6 +82,23 @@ namespace GameTimeLimiter
                 Console.WriteLine("An error occurred while loading the email data: " + e.Message);
             }
         }
+        private void LoadDailyCodes()
+        {
+            try
+            {
+                var dailyCodesPath = ConfigurationManager.AppSettings["DailyCodesPath"];
+                string jsonString = System.IO.File.ReadAllText(dailyCodesPath);
+                dailyCodes = JsonSerializer.Deserialize<DailyCodes>(jsonString);
+            }
+            catch (Exception e)
+            {
+                // Consider logging the exception message to a log file
+                Console.WriteLine("An error occurred while loading the daily codes data: " + e.Message);
+            }
+        }
+
+
+        
 
         private string generate_code()
         {
@@ -163,7 +187,14 @@ namespace GameTimeLimiter
 
             // Sending the email.
             client.Send(mail);
+
+            // Update the last email sent timestamp.
+            dailyCodes.LastEmailSent = DateTime.Now;
+            var jsonString = JsonConvert.SerializeObject(dailyCodes);
+            var dailyCodesPath = ConfigurationManager.AppSettings["DailyCodesPath"];
+            System.IO.File.WriteAllText(dailyCodesPath, jsonString);
         }
+
 
         private string build_mail_string()
         {
